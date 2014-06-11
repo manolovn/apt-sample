@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  *
  * @author manolovn
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Debug {
 }

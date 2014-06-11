@@ -33,13 +33,29 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <artifactId>android-maven-plugin</artifactId>
+                    <version>${android.plugin.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <extensions>true</extensions>
+                <version>3.8.2</version>
+                <configuration>
+                    <sdk>
+                        <path>${env.ANDROID_SDK}</path>
+                        <platform>16</platform>
+                    </sdk>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    
+
 </project>
