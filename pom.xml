@@ -16,7 +16,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <android.plugin.version>3.8.2</android.plugin.version>
+        <android.plugin.version>3.6.0</android.plugin.version>
         <platform.version>4.1.1.4</platform.version>
         <android.sdk.platform>19</android.sdk.platform>
     </properties>
@@ -86,29 +86,6 @@
                         <skip>false</skip>
                     </proguard>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1.1</version>
-                <executions>
-                    <execution>
-                        <id>zipalign</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>install</phase>
-                        <configuration>
-                            <executable>${env.ANDROID_SDK}/tools/zipalign</executable>
-                            <arguments>
-                                <argument>-f</argument>
-                                <argument>4</argument>
-                                <argument>target/${project.build.finalName}.apk</argument>
-                                <argument>target/${project.build.finalName}-zipped.apk</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
