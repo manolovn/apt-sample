@@ -21,7 +21,7 @@ import java.util.Set;
  *
  * @author manolovn
  */
-@SupportedAnnotationTypes("com.manolovn.android.ap_sample.annotations.Debug")
+@SupportedAnnotationTypes("com.manolovn.android.apt_sample.annotations.Debug")
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 public class DebugProcessor extends AbstractProcessor {
 
