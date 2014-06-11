@@ -21,7 +21,7 @@ public class MainTest {
 
     @Debug
     private void doNothing() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
     }
 
 }
