@@ -8,12 +8,14 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.Set;
 
 /**
@@ -36,22 +38,48 @@ public class DebugProcessor extends AbstractProcessor {
             String message = "annotation found in " + elem.getSimpleName();
             processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 
-            TypeElement classElement = (TypeElement) elem;
-            PackageElement packageElement = (PackageElement) classElement.getEnclosingElement();
+            if (elem.getKind() == ElementKind.CLASS) {
 
-            JavaFileObject jfo = null;
-            try {
+                TypeElement classElement = (TypeElement) elem;
+                PackageElement packageElement = (PackageElement) classElement.getEnclosingElement();
 
-                jfo = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "BeanInfo");
-                BufferedWriter bw = new BufferedWriter(jfo.openWriter());
-                bw.append("package ");
-                bw.append(packageElement.getQualifiedName());
-                bw.append(";");
-                bw.newLine();
-                bw.newLine();
+                JavaFileObject jfo = null;
+                try {
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                    jfo = processingEnv.getFiler().createSourceFile(classElement.getQualifiedName() + "$$ManoloVn");
+                    BufferedWriter bw = new BufferedWriter(jfo.openWriter());
+                    bw.append("package ");
+                    bw.append(packageElement.getQualifiedName());
+                    bw.append(";");
+                    bw.newLine();
+                    bw.newLine();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (elem.getKind() == ElementKind.FIELD) {
+
+            } else if (elem.getKind() == ElementKind.METHOD) {
+
+                JavaFileObject jfo = null;
+                try {
+
+                    jfo = processingEnv.getFiler().createSourceFile(elem.getSimpleName().toString() + "$$ManoloVn");
+                    Writer writer = jfo.openWriter();
+
+                    writer.append("package ");
+                    writer.append("com.manolovn.android.apt_sample");
+                    writer.append(";");
+                    writer.append("\n");
+
+                    writer.flush();
+                    writer.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
 
         }
