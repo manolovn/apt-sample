@@ -50,7 +50,7 @@
                 <version>3.8.2</version>
                 <configuration>
                     <sdk>
-                        <path>${env.ANDROID_SDK}</path>
+                        <path>${env.ANDROID_HOME}</path>
                         <platform>16</platform>
                     </sdk>
                 </configuration>
