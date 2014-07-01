@@ -1,4 +1,4 @@
-apt-sample
+APT (Annotation Processing Tool) Sample project
 ==========
 
-Sample project using apt compiler
+Experiments with Java APT related API (just for fun)
